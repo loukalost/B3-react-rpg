@@ -1,6 +1,11 @@
-function App() {
+import { BrowserRouter } from 'react-router'
+import MainRouter from './navigation/MainRouter'
+
+function App () {
   return (
-    <h1 className='text-3xl text-center'>Hello Vite!</h1>
+    <BrowserRouter>
+      <MainRouter />
+    </BrowserRouter>
   )
 }
 
