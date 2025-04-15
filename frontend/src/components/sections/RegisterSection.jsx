@@ -1,11 +1,10 @@
 import { strapiRegisterLocal } from '../../api/strapi'
 import RegisterForm from '../forms/RegisterForm'
 
-function RegisterSection() {
+function RegisterSection () {
   const handleSubmit = async (credentials) => {
     if (credentials?.username && credentials?.email && credentials?.password) {
-      const registerData = await strapiRegisterLocal(credentials)
-      console.log(registerData)
+      await strapiRegisterLocal(credentials)
     }
   }
 

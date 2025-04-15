@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import Input from './inputs/Input'
+import { Link } from 'react-router'
+import Button from '../Button'
 
-function LoginForm ({ onSubmit }) {
+function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = useState({
     identifier: '',
     password: ''
@@ -9,7 +11,6 @@ function LoginForm ({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Form submitted', credentials)
     if (onSubmit) onSubmit(credentials)
   }
 
@@ -27,9 +28,10 @@ function LoginForm ({ onSubmit }) {
         value={credentials.password}
         onChangeText={(text) => setCredentials({ ...credentials, password: text })}
       />
-      <button type='submit' className='bg-white rounded-xl px-10 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer'>
-        Sign in
-      </button>
+      <Button type='submit'>
+        Connexion
+      </Button>
+      <Link to='/register'>Inscription</Link>
     </form>
   )
 }
