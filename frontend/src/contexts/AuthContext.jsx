@@ -32,17 +32,15 @@ const authReducer = (previousState, action) => {
         loading: false,
         error: null
       }
-    case actionTypes.ERROR:
-      return {
-        user: null,
-        jwt: null,
-        error: action.error,
-        loading: false
-      }
     case actionTypes.LOADING:
       return {
-        ...initialState,
+        ...previousState,
         loading: true
+      }
+    case actionTypes.ERROR:
+      return {
+        ...initialState,
+        error: action.error
       }
     case actionTypes.LOGOUT:
       return initialState
@@ -68,18 +66,13 @@ const authFactory = (previousState, dispatch) => ({
       handleError(dispatch, error)
     }
   },
-  logout: async () => {
-    dispatch({
-      type: actionTypes.LOGOUT
-    })
-  },
-  register: async (credentials) => {
+  register: async (user) => {
     dispatch({
       type: actionTypes.LOADING
     })
     try {
-      const registerData = await strapiRegisterLocal(credentials)
-      if (registerData?.user && registerData?.jwt) {
+      const registerData = await strapiRegisterLocal(user)
+      if (registerData.user && registerData.jwt) {
         dispatch({
           type: actionTypes.REGISTER_SUCCESS,
           data: registerData
@@ -88,6 +81,11 @@ const authFactory = (previousState, dispatch) => ({
     } catch (error) {
       handleError(dispatch, error)
     }
+  },
+  logout: () => {
+    dispatch({
+      type: actionTypes.LOGOUT
+    })
   }
 })
 
@@ -106,7 +104,7 @@ const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, savedState || initialState)
 
   useEffect(() => {
-    // Sauvegarde de l'état à chaque changement via la liste de dépendances de useEffect()
+    // Sauvegarde de l'état à chaque changement via la liste de dépendances du useEffect()
     window.localStorage.setItem('@AUTH', JSON.stringify(state))
   }, [state])
 

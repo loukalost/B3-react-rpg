@@ -1,8 +1,10 @@
 import LoginSection from '../components/sections/LoginSection'
 
-function LoginPage () {
+function LoginPage ({ navigation }) {
   return (
-    <LoginSection />
+    <div className='flex flex-col items-center justify-center w-full h-full gap-4'>
+      <LoginSection />
+    </div>
   )
 }
 

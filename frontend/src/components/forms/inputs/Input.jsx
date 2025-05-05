@@ -5,21 +5,19 @@ function Input ({
   onChangeText,
   ...props
 }) {
-  const handleChange = (e) => {
-    if (onChange) onChange(e)
-    if (onChangeText) onChangeText(e.target.value)
+  const handleChange = (event) => {
+    if (onChange) onChange(event)
+    if (onChangeText) onChangeText(event.target.value)
   }
 
   return (
-    <label htmlFor={label} className='flex flex-col gap-2 w-1/2'>
-      <span className='text-sm text-gray-700'>{label}</span>
+    <label className='flex flex-col gap-0.5'>
+      {label} :
       <input
         {...props}
-        id={label}
         value={value}
         onChange={handleChange}
-        className='border-2 border-gray-300 bg-white rounded-md p-2 w-full focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
-        placeholder={`Enter ${label.toLowerCase()}`}
+        className='border-2 border-neutral-200 rounded-md py-1 px-1 focus:border-neutral-400 hover:border-neutral-400 focus-visible:border-neutral-400 outline-0 transition-all duration-200'
       />
     </label>
   )

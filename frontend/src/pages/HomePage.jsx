@@ -1,9 +1,10 @@
-function HomePage () {
+// import Button from '../components/button'
+import NewGameSection from '../components/sections/NewGameSection'
+
+function Home () {
   return (
-    <div className='flex flex-col items-center justify-center'>
-      <h1 className='text-9xl text-center'>Hello Steve !</h1>
-    </div>
+    <NewGameSection />
   )
 }
 
-export default HomePage
+export default Home

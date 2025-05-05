@@ -1,37 +1,37 @@
 import { useState } from 'react'
 import Input from './inputs/Input'
-import { Link } from 'react-router'
-import Button from '../Button'
+import Button from '../button'
 
-function LoginForm({ onSubmit }) {
+function LoginForm ({ onSubmit }) {
   const [credentials, setCredentials] = useState({
-    identifier: '',
-    password: ''
+    identifier: 'bonsoir@bonsoir.fr',
+    password: 'bonsoir'
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (event) => {
+    event.preventDefault()
     if (onSubmit) onSubmit(credentials)
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center gap-4 w-[50vw]'>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-4 justify-center items-center'>
       <Input
-        label='Email'
         type='email'
+        label='Email'
         value={credentials.identifier}
         onChangeText={(text) => setCredentials({ ...credentials, identifier: text })}
       />
       <Input
-        label='Password'
         type='password'
+        label='Password'
         value={credentials.password}
         onChangeText={(text) => setCredentials({ ...credentials, password: text })}
       />
-      <Button type='submit'>
-        Connexion
+      <Button
+        type='submit'
+      >
+        Se connecter
       </Button>
-      <Link to='/register'>Inscription</Link>
     </form>
   )
 }

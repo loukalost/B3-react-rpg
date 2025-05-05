@@ -1,44 +1,44 @@
 import { useState } from 'react'
 import Input from './inputs/Input'
-import { Link } from 'react-router'
-import Button from '../Button'
+import Button from '../button'
 
 function RegisterForm ({ onSubmit }) {
-  const [credentials, setCredentials] = useState({
-    username: '',
-    email: '',
-    password: ''
+  const [data, setData] = useState({
+    email: 'marius2@sergent.dev',
+    username: 'marius2',
+    password: 'password'
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (onSubmit) onSubmit(credentials)
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (onSubmit) onSubmit(data)
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center gap-4 w-[50vw]'>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-4 justify-center items-center'>
       <Input
-        label='Username'
-        type='text'
-        value={credentials.username}
-        onChangeText={(text) => setCredentials({ ...credentials, username: text })}
-      />
-      <Input
-        label='Email'
         type='email'
-        value={credentials.email}
-        onChangeText={(text) => setCredentials({ ...credentials, email: text })}
+        label='Email'
+        value={data.email}
+        onChangeText={(text) => setData({ ...data, email: text })}
       />
       <Input
-        label='Password'
-        type='password'
-        value={credentials.password}
-        onChangeText={(text) => setCredentials({ ...credentials, password: text })}
+        type='text'
+        label='Username'
+        value={data.username}
+        onChangeText={(text) => setData({ ...data, username: text })}
       />
-      <Button type='submit'>
-        Inscription
+      <Input
+        type='password'
+        label='Password'
+        value={data.password}
+        onChangeText={(text) => setData({ ...data, password: text })}
+      />
+      <Button
+        type='submit'
+      >
+        S'inscrire
       </Button>
-      <Link to='/login'>J'ai déjà un compte</Link>
     </form>
   )
 }

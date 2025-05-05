@@ -12,6 +12,14 @@ function Navbar () {
         >
           Profile
         </Link>
+        {/* <div className='flex flex-row gap-4'>
+          <a href='/login' className='text-sm text-gray-700 hover:text-gray-900 transition-all duration-300'>
+            Se connecter
+          </a>
+          <a href='/register' className='text-sm text-gray-700 hover:text-gray-900 transition-all duration-300'>
+            S'inscrire
+          </a>
+        </div> */}
       </div>
     </nav>
   )

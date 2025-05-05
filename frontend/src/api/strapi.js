@@ -1,4 +1,5 @@
 import axios from 'axios'
+import slugify from 'slugify'
 
 const api = axios.create({
   baseURL: 'http://localhost:1337/api',
@@ -12,8 +13,8 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const savedState = JSON.parse(window.localStorage.getItem('@AUTH'))
-    if (savedState) {
-      config.headers.Authorization = 'Bearer' + savedState.jwt
+    if (savedState?.jwt) {
+      config.headers.Authorization = 'Bearer ' + savedState.jwt
     }
     return config
   },
@@ -22,15 +23,19 @@ api.interceptors.request.use(
   }
 )
 
+// AUTHENTICATION
+
 const strapiLoginLocal = async (credentials) => {
   const response = await api.post('/auth/local', credentials)
   return response.data
 }
 
-const strapiRegisterLocal = async (credentials) => {
-  const response = await api.post('/auth/local/register', credentials)
+const strapiRegisterLocal = async (data) => {
+  const response = await api.post('/auth/local/register', data)
   return response.data
 }
+
+// GAME
 
 const strapiCreateGame = async (data) => {
   const body = {
@@ -38,7 +43,8 @@ const strapiCreateGame = async (data) => {
       name: data.name,
       users: [
         data.userId
-      ]
+      ],
+      slug: slugify(data.name)
     }
   }
   const response = await api.post('/games', body)
