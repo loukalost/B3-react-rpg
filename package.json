@@ -12,5 +12,8 @@
   },
   "devDependencies": {
     "standard": "^17.1.2"
+  },
+  "dependencies": {
+    "react-modal": "^3.16.3"
   }
 }
