@@ -12,7 +12,6 @@ const generateImage = async () => {
 }
 
 const generateText = async (prompt) => {
-  console.log('generate text')
   const response = await ai.models.generateContent({
     model: 'gemini-2.0-flash',
     config: {
@@ -20,7 +19,7 @@ const generateText = async (prompt) => {
     },
     contents: prompt
   })
-  console.log(response.candidates[0].content)
+  return response?.candidates[0]?.content?.parts[0]?.text
 }
 
 module.exports = {

@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "players",
+  "info": {
+    "singularName": "player",
+    "pluralName": "players",
+    "displayName": "Player",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "players"
+    },
+    "hp": {
+      "type": "integer"
+    },
+    "class": {
+      "type": "enumeration",
+      "enum": [
+        "bard",
+        "barbarian",
+        "warrior",
+        "alchimist",
+        "mage",
+        "cleric"
+      ]
+    },
+    "biography": {
+      "type": "text"
+    }
+  }
+}

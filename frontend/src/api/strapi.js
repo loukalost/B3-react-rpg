@@ -51,8 +51,25 @@ const strapiCreateGame = async (data) => {
   return response.data
 }
 
+// PLAYER
+
+const strapiCreatePlayer = async (data) => {
+  const body = {
+    data: {
+      name: data.name,
+      user: data.userId,
+      biography: data.description,
+      class: data.class,
+      hp: 100
+    }
+  }
+  const response = await api.post('/players', body)
+  return response.data
+}
+
 export {
   strapiLoginLocal,
   strapiRegisterLocal,
-  strapiCreateGame
+  strapiCreateGame,
+  strapiCreatePlayer
 }
